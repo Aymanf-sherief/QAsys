@@ -14,14 +14,10 @@ import java.util.Scanner;
  * @author ayman
  */
 public class Main {
-    public static void main (String args[]) {
-        Scanner scn = new Scanner(System.in);
-        String input = scn.nextLine();
-        Question Q = new Question(input);
-        QAnalyzer.Tokenize(Q);
-        for (String Word : Q.getWords()) {
-        System.out.println(Word);
-        }
+
+    public static void main(String args[]) {
+        new UI();
+
     }
-    
+
 }

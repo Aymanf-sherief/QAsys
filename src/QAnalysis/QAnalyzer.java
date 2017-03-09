@@ -13,6 +13,11 @@ package QAnalysis;
 
     public class QAnalyzer {
 
+        public static void Analyze(Question Q) {
+            Tokenize(Q);
+            
+        }
+        
         public static void Tokenize(Question Q) {
             Q.QWords = Q.QText.split(" ");
         }

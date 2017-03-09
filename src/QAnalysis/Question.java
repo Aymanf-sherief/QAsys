@@ -9,8 +9,6 @@ package QAnalysis;
  *
  * @author ayman
  */
-
-
 public class Question {
 
     protected String QText;
@@ -30,5 +28,12 @@ public class Question {
         return QWords;
     }
 
-}
+    public String toString() {
+        StringBuilder answer = new StringBuilder();
+        for (String Word : QWords) {
+            answer.append(Word);
+        }
+        return answer.toString();
+    }
 
+}

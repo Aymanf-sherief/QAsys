@@ -31,7 +31,7 @@ public class Question {
     public String toString() {
         StringBuilder answer = new StringBuilder();
         for (String Word : QWords) {
-            answer.append(Word);
+            answer.append(Word + "\n");
         }
         return answer.toString();
     }

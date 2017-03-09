@@ -16,7 +16,8 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String args[]) {
-        new UI();
+        QA_UI userInterface = new QA_UI();
+        userInterface.setVisible(true);
 
     }
 

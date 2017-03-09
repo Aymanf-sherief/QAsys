@@ -5,32 +5,39 @@
  */
 package QAnalysis;
 
+import java.util.Vector;
+
 /**
  *
  * @author ayman
  */
 public class Question {
 
-    protected String QText;
-    protected String[] QWords;
+    protected String Text;
+    protected Vector<String> Words;
+    protected Vector<String> Stems;
+    protected Vector<String> FinalResource;
 
     public Question(String input) {
-        QText = input;
+        Text = input;
+        Words = new Vector<String>();
+        Stems = new Vector<String>();
+        FinalResource = Stems;
     }
 
 //setters
     //getters
     public String getText() {
-        return QText;
+        return Text;
     }
 
-    public String[] getWords() {
-        return QWords;
+    public Vector<String> getWords() {
+        return Words;
     }
 
     public String toString() {
         StringBuilder answer = new StringBuilder();
-        for (String Word : QWords) {
+        for (String Word : FinalResource) {
             answer.append(Word + "\n");
         }
         return answer.toString();

@@ -5,8 +5,14 @@
  */
 package QAnalysis;
 
+import static QAnalysis.QAnalyzer.Stem;
+
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,9 +31,26 @@ public class QAnalyzer {
     }
 
     public static void Stem(Question Q) {
-        ArabicStemmer Stemmer = new ArabicStemmer();
-        for (String Word : Q.Words) {
-            Q.Stems.add(Stemmer.stemWord(Word));
-        }
+        Stem Stemmer = new Stem(Q.Text);
+        System.out.println(Stemmer.displayText());
+        Q.StemmerResult = Stemmer.displayText();
+        Q.Stems = Stemmer.getStemsAsVector();
     }
+
+//    public static void Tag(Question Q) {
+//        try {
+//            String dataDirectory = new StringBuffer(System.getProperty("user.dir") + System.getProperty("file.separator")
+//                    + "data" + System.getProperty("file.separator")).toString();
+//            System.out.println(dataDirectory);
+//            POSTagger tagger = new POSTagger(dataDirectory);
+//            ArabicNER ner = new ArabicNER(dataDirectory, tagger);
+//            Collections.copy(Q.Tags, ner.tag(Q.Text, true));
+//        } catch (IOException ex) {
+//            Logger.getLogger(QAnalyzer.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(QAnalyzer.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(QAnalyzer.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 }

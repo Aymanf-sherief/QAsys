@@ -7,12 +7,20 @@ package main;
 
 import QAnalysis.QAnalyzer;
 import QAnalysis.Question;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.util.Vector;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author ayman
  */
 public class QA_UI extends javax.swing.JFrame {
+
+    private Vector staticFiles;
 
     /**
      * Creates new form UI
@@ -74,7 +82,7 @@ public class QA_UI extends javax.swing.JFrame {
         Question Q = new Question(Q_txt.getText());
         QAnalyzer.Analyze(Q);
         A_txt.setText(Q.toString());
-        
+
     }//GEN-LAST:event_Q_txtActionPerformed
 
     /**

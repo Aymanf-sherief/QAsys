@@ -16,13 +16,13 @@ public class Question {
     protected String Text;
     protected Vector<String> Words;
     protected Vector<String> Stems;
-    protected Vector<String> FinalResource;
+    protected Vector<String> Tags;
+    protected String StemmerResult;
 
     public Question(String input) {
         Text = input;
         Words = new Vector<String>();
         Stems = new Vector<String>();
-        FinalResource = Stems;
     }
 
 //setters
@@ -37,10 +37,11 @@ public class Question {
 
     public String toString() {
         StringBuilder answer = new StringBuilder();
-        for (String Word : FinalResource) {
-            answer.append(Word + "\n");
+        for (Object Word : Stems) {
+            System.out.println(Word.toString());
+            answer.append(Word.toString() + "\n");
         }
-        return answer.toString();
+        return StemmerResult;
     }
 
 }

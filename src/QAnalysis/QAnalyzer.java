@@ -49,16 +49,13 @@ public class QAnalyzer {
     }
 
     public static void Tag(Question Q) {
-        InputStream is = new ByteArrayInputStream(Q.Text.getBytes());
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
         MaxentTagger tagger = new MaxentTagger("models/arabic.tagger");
-        List<List<HasWord>> sentences = MaxentTagger.tokenizeText(br);
-        for (List<HasWord> sentence : sentences) {
-            List<TaggedWord> tSentence = tagger.tagSentence(sentence);
-            System.err.println(SentenceUtils.listToString(tSentence, false));
-            Q.Tags = new Vector(Arrays.asList(SentenceUtils.listToString(tSentence, false).split(" ")));
+        String tagged = tagger.tagString(Q.Text);
 
-        }
+        System.err.println(tagged);
+        Q.Tags = new Vector(Arrays.asList(tagged.split(" ")));
+
     }
+
 }

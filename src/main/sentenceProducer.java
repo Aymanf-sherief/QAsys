@@ -22,6 +22,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.commons.io.FileUtils;
 
 /**
  *
@@ -31,38 +32,37 @@ public class sentenceProducer {
 
     public static void makeSentences() throws IOException {
         String dir = "documents";
+
         String[] FileNames = new File(dir).list();
         StringBuilder sb;
         sb = new StringBuilder();
         String outputDir = "sentences";
         File outDir = new File(outputDir);
+        FileUtils.cleanDirectory(outDir);
         outDir.mkdir();
         int i = 0;
         BufferedReader br;
         FileReader fr;
-        
-       
-        
-        
-       for (String filename : FileNames) {
-           filename = dir + "\\" + filename;
-             DocumentPreprocessor dp = new DocumentPreprocessor(filename);
-         
-      for (List<HasWord> sentence : dp) {
-         String stringSent = SentenceUtils.listToString(sentence, true);
-     
-         File sentFile = new File("sentences\\" + i + ".txt");
-            sentFile.createNewFile();
-            FileWriter fw = new FileWriter(sentFile);
-            i++;
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(stringSent.replaceAll("[-A-Za-z-]", ""));
-            System.err.println(sentence);
-            bw.close();
-            fw.close();
-        
-      }
-       }
+
+        for (String filename : FileNames) {
+            filename = dir + "\\" + filename;
+            DocumentPreprocessor dp = new DocumentPreprocessor(filename);
+
+            for (List<HasWord> sentence : dp) {
+                String stringSent = SentenceUtils.listToString(sentence, true);
+
+                File sentFile = new File("sentences\\" + i + ".txt");
+                sentFile.createNewFile();
+                FileWriter fw = new FileWriter(sentFile);
+                i++;
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write(stringSent.replaceAll("[-A-Za-z-]", ""));
+                System.err.println(sentence);
+                bw.close();
+                fw.close();
+
+            }
+        }
 //            filename = dir + "\\" + filename;
 //
 //            fr = new FileReader(filename);

@@ -10,8 +10,11 @@ import QAnalysis.Question;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -51,6 +54,7 @@ public class QA_UI extends javax.swing.JFrame {
         });
 
         A_txt.setColumns(20);
+        A_txt.setLineWrap(true);
         A_txt.setRows(5);
         jScrollPane1.setViewportView(A_txt);
 
@@ -79,9 +83,29 @@ public class QA_UI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Q_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Q_txtActionPerformed
-        Question Q = new Question(Q_txt.getText());
-        QAnalyzer.Analyze(Q);
-        A_txt.setText(Q.toString());
+        try {
+            Vector<String> hits = SearchFiles.Find(Q_txt.getText());
+            Question Q = new Question(Q_txt.getText());
+            QAnalyzer.Analyze(Q);
+            A_txt.setText(Q.toString());
+            StringBuilder sb = new StringBuilder();
+            //for (String path : hits) {
+            String path = hits.elementAt(0);
+            FileReader fr = new FileReader(path);
+
+            BufferedReader br = new BufferedReader(fr);
+
+            String s;
+            while ((s = br.readLine()) != null) {
+                sb.append(s + "\n");
+
+            }
+            // }
+            A_txt.setText(sb.toString());
+        } catch (Exception ex) {
+            Logger.getLogger(QA_UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
 
     }//GEN-LAST:event_Q_txtActionPerformed
 

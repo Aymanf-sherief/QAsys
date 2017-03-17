@@ -116,7 +116,7 @@ public class IndexFiles {
             // worth it when your index is relatively static (ie
             // you're done adding documents to it):
             //
-            // writer.forceMerge(1);
+             writer.forceMerge(1);
             writer.close();
 
             Date end = new Date();

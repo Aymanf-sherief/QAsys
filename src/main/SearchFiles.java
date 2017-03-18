@@ -17,6 +17,7 @@
 package main;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -51,7 +52,8 @@ public class SearchFiles {
      */
     public static Vector<String> Find(String queryString) throws Exception {
         Vector<String> result = null;
-
+        File dir = new File("sentences");
+        int count = dir.list().length;
         String usage
                 = "Usage:\tjava org.apache.lucene.demo.SearchFiles [-index dir] [-field f] [-repeat n] [-queries file] [-query string] [-raw] [-paging hitsPerPage]\n\nSee http://lucene.apache.org/core/4_1_0/demo/ for details.";
 
@@ -61,7 +63,7 @@ public class SearchFiles {
         int repeat = 0;
         boolean raw = false;
 
-        int hitsPerPage = 10;
+        int hitsPerPage = count;
 
         IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get(index)));
         IndexSearcher searcher = new IndexSearcher(reader);
